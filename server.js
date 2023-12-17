@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 
+//Load env vars 
 dotenv.config({ path: './config/config.env' });
 // body parser
 const app = express();
@@ -8,6 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+const connectToDatabase = require('./config/db');
+connectToDatabase();
+
+// Your code here
 const hospitals = require('./routes/hospitals');
 
 app.use('/api/v1/hospitals', hospitals);
@@ -18,4 +24,11 @@ app.listen(port, () => {
     `Server running at http://localhost:${port}/`,
     process.env.NODE_ENV
   );
+});
+
+//Handle unhandled promise rejections 
+process.on('unhandledRejection', (err, promise) => {
+  console.log(`Error: ${err.message}`);
+  //Close server & exit process 
+  server.close(() => process.exit(1));
 });
