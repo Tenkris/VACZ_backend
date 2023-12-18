@@ -7,7 +7,7 @@ const {
   createHospital,
   updateHospital,
   deleteHospital,
-} = require('../controllers/hospotals');
+} = require('../controllers/hospitals');
 
 router.route('/').get(getHospitals).post(createHospital);
 router

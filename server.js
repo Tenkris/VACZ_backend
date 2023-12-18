@@ -17,6 +17,11 @@ const hospitals = require('./routes/hospitals');
 
 app.use('/api/v1/hospitals', hospitals);
 
+
+const auth = require('./routes/auth');
+app.use('/api/v1/auth', auth);
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(
