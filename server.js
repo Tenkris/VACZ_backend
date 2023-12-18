@@ -1,14 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv');
 
-//Load env vars 
+//Load env vars
 dotenv.config({ path: './config/config.env' });
 // body parser
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 const connectToDatabase = require('./config/db');
 connectToDatabase();
@@ -26,9 +25,9 @@ app.listen(port, () => {
   );
 });
 
-//Handle unhandled promise rejections 
-process.on('unhandledRejection', (err, promise) => {
-  console.log(`Error: ${err.message}`);
-  //Close server & exit process 
-  server.close(() => process.exit(1));
-});
+// //Handle unhandled promise rejections
+// process.on('unhandledRejection', (err, promise) => {
+//   console.log(`Error: ${err.message}`);
+//   //Close server & exit process
+//   server.close(() => process.exit(1));
+// });

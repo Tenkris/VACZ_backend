@@ -12,6 +12,7 @@ const {
 router.route('/').get(getHospitals).post(createHospital);
 router
   .route('/:id')
+  .post(createHospital)
   .get(getHospital)
   .put(updateHospital)
   .delete(deleteHospital);
